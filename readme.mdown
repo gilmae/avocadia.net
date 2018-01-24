@@ -1,0 +1,1 @@
+Writing a website, with framework, from scratch.\n\n Yes, Gary Bernhardt did it as well, and better. So?
