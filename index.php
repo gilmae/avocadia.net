@@ -1,4 +1,8 @@
 <?php
+
+include("quotes.php");
+include("application.php");
+
  /* 
  * A Quotes collection site
  * 
@@ -13,48 +17,22 @@
 
 $path_only = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+$app = new Application(array(
+    '/' => list_quote,
+    '/quote/new' => new_quote,
+    '/quote/create' => create_quote,
+    '/quote/:id' => view_quote
+));
 
+$result = $app->call($path_only);
 
-
-function find_route($path)
+http_response_code($result[0]);
+foreach ($result[1] as $key => $value)
 {
-    $routes = array(
-        '/^\/$/' => "Whatsoever thy hand findeth to do, do it with thy might; for there is no work, nor device, nor knowledge, nor wisdom, in the grave, whither thou goest",
-        '/^\/quote\/new$/' => "It's a quote form",
-        '/^\/quote\/create$/' => 'Its a script to save the quote',
-        '/^\/quote\/:id$/' => "It's a single quote"
-    );
-
-    foreach ($routes as $key => $value)
-    {
-        $matches;
-        $keyAsRegex = translate_route_key_to_regex($key);
-        if (preg_match($keyAsRegex, $path, $matches) == 1) {
-            $tokens = scan_route_key_for_tokens($key);
-            $token_values = array_slice($matches, 1);
-            $route_args = array_combine($tokens, $token_values);
-            
-            return $value;
-        }
-    }
-
-    return "Nope";
+    header($key . ": " . $value);
 }
 
-function translate_route_key_to_regex($key)
-{
-    return preg_replace("/(:[^\/$]+)/", "(.+)", $key);
-}
-
-function scan_route_key_for_tokens($key)
-{
-    $matches;
-    if (preg_match("/:([^\/$]+)/", $key, $matches) == 1) {
-        return array_slice($matches, 1);
-    }
-
-}
-echo(find_route($path_only));
+echo($result[2]);
  
 
 
