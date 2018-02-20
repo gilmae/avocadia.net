@@ -2,6 +2,9 @@
 
 include("quotes.php");
 include("application.php");
+include("config.php");
+include("queries.php");
+include("DB.php");
 
  /* 
  * A Quotes collection site

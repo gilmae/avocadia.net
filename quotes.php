@@ -13,7 +13,15 @@ function create_quote($route)
 
 function list_quote($route) 
 { 
-    return "List of quotes";
+    $db = new DB();
+    $quotes = $db->find_all_quotes();
+
+    $r = "";
+    foreach($quotes as $quote)
+    {
+        $r = $r . "<p>" . $quote->quote . "</p>";
+    }
+    return $r;
 }
 
 function view_quote($route) {
