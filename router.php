@@ -1,6 +1,6 @@
 <?php
 
-class Application
+class Router
 {
     private $app_routes;
 

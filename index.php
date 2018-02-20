@@ -1,7 +1,7 @@
 <?php
 
 include("quotes.php");
-include("application.php");
+include("router.php");
 include("config.php");
 include("queries.php");
 include("DB.php");
@@ -20,15 +20,18 @@ include("DB.php");
 
 $path_only = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-$app = new Application(array(
+$router = new Router(array(
     '/' => list_quote,
     '/quote/new' => new_quote,
     '/quote/create' => create_quote,
     '/quote/:id' => view_quote
 ));
 
-$result = $app->call($path_only);
+$result = $router->call($path_only);
 
+/*
+* Following should be pulled into a renderer class
+*/
 http_response_code($result[0]);
 foreach ($result[1] as $key => $value)
 {
@@ -36,8 +39,6 @@ foreach ($result[1] as $key => $value)
 }
 
 echo($result[2]);
- 
-
 
 ?>
 
