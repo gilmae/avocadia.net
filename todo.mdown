@@ -1,5 +1,6 @@
 * Purpose /
-* Routing/
-* Database
+* Routing /
+* Database /
 * Templating
+* Re-organise into framework and app sections
 
