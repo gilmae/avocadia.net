@@ -1,5 +1,5 @@
 <?php
-include("app/scratch.php");
+include("scratch/scratch.php");
 
 foreach (glob("config/*.php") as $filename)
 {
