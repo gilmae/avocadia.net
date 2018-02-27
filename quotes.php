@@ -15,13 +15,9 @@ function list_quote($route)
 { 
     $db = new DB();
     $quotes = $db->find_all_quotes();
-
-    $r = "";
-    foreach($quotes as $quote)
-    {
-        $r = $r . "<p>" . $quote->quote . "</p>";
-    }
-    return $r;
+    $renderer = new Renderer();
+    $r = "list.php";
+    return $renderer->render_template($r, array('quotes' => $quotes));
 }
 
 function view_quote($route) {

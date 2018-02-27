@@ -2,6 +2,7 @@
 
 include("quotes.php");
 include("router.php");
+include("renderer.php");
 include("config.php");
 include("queries.php");
 include("DB.php");
@@ -38,7 +39,16 @@ foreach ($result[1] as $key => $value)
     header($key . ": " . $value);
 }
 
-echo($result[2]);
+if (!is_array($result[2])) 
+{
+    $result[2] = array($result[2]);
+}
+
+foreach ($result[2] as $body)
+{
+    echo($body);
+}
+
 
 ?>
 
