@@ -1,12 +1,16 @@
 <?php
-
-
-
     class DB
     {
+        private static $queries = [];
+
         function __call($sql, $args)
         {
-            return $this->query(QUERIES[$sql], $args);
+            return $this->query(self::$queries[$sql], $args);
+        }
+
+        public static function registerQuery($name, $querySpec)
+        {
+            self::$queries[$name] = $querySpec;
         }
         
         private function Query($sql, $args)

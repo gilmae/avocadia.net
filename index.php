@@ -1,11 +1,12 @@
 <?php
+include("app/scratch.php");
+
+foreach (glob("config/*.php") as $filename)
+{
+    include $filename;
+}
 
 include("quotes.php");
-include("router.php");
-include("renderer.php");
-include("config.php");
-include("queries.php");
-include("DB.php");
 
  /* 
  * A Quotes collection site

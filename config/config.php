@@ -4,4 +4,5 @@
     DEFINE("DB_CHARSET", "utf8mb4");
     DEFINE("DB_UID", "quotes");
     DEFINE("DB_PWD", "");
+    
 ?>
