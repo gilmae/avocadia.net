@@ -18,19 +18,40 @@
             $pdo = $this->getConnection();
 
             $stmt = $pdo->prepare($sql);
-            if (empty($args))
+            
+            try 
             {
-                $stmt->execute();
+                if (empty($args))
+                {
+                    $stmt->execute();
+                }
+                else
+                {
+                    $stmt->execute($args[0]);
+                }
             }
-            else
-            {
-                $stmt->execute($args[0]);
+            catch  (Exception $e) {
+                print_r($stmt->debugDumpParams());
             }
             
             $records = [];
+
             while ($row = $stmt->fetch())
             {
                 array_push($records, (object)$row);
+            }
+
+            $last_id = $pdo->lastInsertId();
+            if ($last_id != 0)
+            {
+                if (empty($records))
+                {
+                    return ["id"=>$last_id];
+                }
+                else
+                {
+                    return [$records, ["id"=>$last_id]];
+                }
             }
             return $records;
         }

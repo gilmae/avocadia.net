@@ -8,7 +8,7 @@ foreach (glob("config/*.php") as $filename)
 
 include("quotes.php");
 
- /* 
+/* 
  * A Quotes collection site
  * 
  * What pages do we need to for this?

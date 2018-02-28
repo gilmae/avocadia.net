@@ -1,5 +1,5 @@
 <?php
-class Renderer
+class Templater
 {
 	private $errors = array();
 	
