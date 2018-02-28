@@ -1,6 +1,5 @@
 <?php
 
-
 function new_quote($route)
 {
     $templater = new Templater();
@@ -21,11 +20,12 @@ function list_quote($route)
     $db = new DB();
     $quotes = $db->find_all_quotes();
     $templater = new Templater();
-    $r = "list.php";
-    return $templater->render_template($r, array('quotes' => $quotes));
+    
+    return $templater->render_template("list.php", array('quotes' => $quotes));
 }
 
-function view_quote($route) {
+function view_quote($route) 
+{
     return "It's a single quote, with id "  . $route['id'];
 }
 

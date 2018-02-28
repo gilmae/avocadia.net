@@ -31,24 +31,9 @@ $router = new Router(array(
 
 $result = $router->call($path_only);
 
-/*
-* Following should be pulled into a renderer class
-*/
-http_response_code($result[0]);
-foreach ($result[1] as $key => $value)
-{
-    header($key . ": " . $value);
-}
+$scratch = new Scratch();
 
-if (!is_array($result[2])) 
-{
-    $result[2] = array($result[2]);
-}
-
-foreach ($result[2] as $body)
-{
-    echo($body);
-}
+$scratch->run($result);
 
 
 ?>

@@ -28,7 +28,8 @@ class Router
                 
                 return array(200, array(
                     'Content-type' => 'text/html', 
-                    'X-Carpe-Diem'=>"Whatsoever thy hand findeth to do, do it with thy might; for there is no work, nor device, nor knowledge, nor wisdom, in the grave, whither thou goest"), $route_proc($route_args));
+                    'X-Carpe-Diem'=>"Whatsoever thy hand findeth to do, do it with thy might; for there is no work, nor device, nor knowledge, nor wisdom, in the grave, whither thou goest"), 
+                    $route_proc($route_args));
             }
         }
 
