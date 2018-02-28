@@ -8,21 +8,24 @@ foreach (glob(dirname(__FILE__) . "/app/*.php") as $filename)
 class Scratch
 {
 
-    function run($app_results)
+    public static function run($app)
     {
-        if (!is_array($app_results))
+        $path_only = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $result = $app->call($path_only);
+
+        if (!is_array($result))
         {
             throw new Exception("Invalid App Results, expecting array: [Status, Headers, Body]");
         }
 
-        if (count($app_results) != 3)
+        if (count($result) != 3)
         {
             throw new Exception("Invalid App Results, expecting array: [Status, Headers, Body]");          
         }
 
-        $status = $app_results[0];
-        $headers = $app_results[1];
-        $body = $app_results[2];
+        $status = $result[0];
+        $headers = $result[1];
+        $body = $result[2];
 
         http_response_code($status);
 

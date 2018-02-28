@@ -20,7 +20,6 @@ include("quotes.php");
  */
 
 
-$path_only = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $router = new Router(array(
     '/' => list_quote,
@@ -29,11 +28,7 @@ $router = new Router(array(
     '/quote/:id' => view_quote
 ));
 
-$result = $router->call($path_only);
-
-$scratch = new Scratch();
-
-$scratch->run($result);
+$scratch = Scratch::run($router);
 
 
 ?>
