@@ -31,7 +31,6 @@
                 }
             }
             catch  (Exception $e) {
-                //print_r($stmt->debugDumpParams());
                 print_r($e);
             }
             
