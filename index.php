@@ -8,7 +8,7 @@ foreach (glob("config/*.php") as $filename)
     include $filename;
 }
 
-include("quotes.php");
+include("highlights.php");
 
 /* 
  * A Quotes collection site
@@ -23,10 +23,10 @@ include("quotes.php");
 
 $router = new Router(
     array(
-        '/' => list_quote,
-        '/quote/new' => new_quote,
-        '/quote/create' => create_quote,
-        '/quote/:id' => view_quote
+        '/' => "HighlightHandler::list",
+        '/new' => "HighlightHandler::new",
+        '/create' => "HighlightHandler::create",
+        '/:id' => "HighlightHandler::view"
     ),
     [
         'X-Carpe-Diem'=> $CARPE_DIEM_QUOTE

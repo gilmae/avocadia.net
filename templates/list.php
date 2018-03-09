@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Quotes - New Quote</title>
+        <title>Highlights</title>
         <style>
             body {width:auto; margin:0 30% 0 2em; font-size:16px}
             h1 {font-size:1.2em; font-weight: normal; color:#666}
@@ -24,14 +24,14 @@
         </style>
     </head>
     <body>
-    <h1>Quotes</h1>
+    <h1>Highlights</h1>
     <section>
-        <? foreach($quotes as $quote)
+        <? foreach($model as $each)
         {
         ?>
             <article>
-                <p><? echo($quote->quote)?></p>
-                <p><? echo($quote->author)?>, <? echo($quote->source) ?></p>
+                <p><? echo($each->quote)?></p>
+                <p><? echo($each->author)?>, <? echo($each->source) ?></p>
             </article>
         <?    
         }

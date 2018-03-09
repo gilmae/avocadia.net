@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Quotes - New Quote</title>
+        <title>Highlights - New</title>
         <style>
             body {width:auto; margin:0 30% 0 2em;}
             h1 {font-size:1em;}
@@ -24,12 +24,12 @@
         </style>
     </head>
     <body>
-    <h1>Quotes</h1>
+    <h1>Highlights</h1>
     <form action="create" method="POST">
         <fieldset> 
-            <section><label for="quote">Quote</label><textarea name="quote[quote]" id="quote" rows="10" cols="20" placeholder="What was said...?"></textarea></section>
-            <section><label for="author">Author</label><input name="quote[author]" id="author" placeholder="Who said it..." /></section>
-            <section><label for="source">Source</label><input name="quote[source]" id="source"  placeholder="WHere did they say it..." /></section>
+            <section><label for="quote">Quote</label><textarea name="highlight[quote]" id="quote" rows="10" cols="20" placeholder="What was said...?"></textarea></section>
+            <section><label for="author">Author</label><input name="highlight[author]" id="author" placeholder="Who said it..." /></section>
+            <section><label for="source">Source</label><input name="highlight[source]" id="source"  placeholder="WHere did they say it..." /></section>
         </fieldset>
         <input type="submit" value="save" />
     </form>
