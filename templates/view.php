@@ -24,7 +24,7 @@
         </style>
     </head>
     <body>
-    <h1>Highlight</h1>
+    <h1>Highlights</h1>
     <section>
         <article>
             <blockquote><?echo($model->quote)?></blockquote>
