@@ -25,7 +25,8 @@ if (!$e->exists("micropub.db"))
 $router = new Router(
     array(
         '/' => "HomeModule::index",
-        '/micropub' => "MicropubHandler::create"
+        '/micropub' => "MicropubHandler::create",
+        '/drafts/:id' => [200, "text/plain", 'draft'] 
     ),
     [
         'X-Carpe-Diem'=> $CARPE_DIEM_QUOTE
