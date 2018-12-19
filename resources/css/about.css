@@ -1,0 +1,140 @@
+ul
+{
+    list-style: none;
+    padding-left:0;
+    margin-left:0;
+}
+
+
+body {
+    margin: 0 1em;
+}
+
+[role="navigation"] {
+    display: none;
+}
+
+body>header {
+    height: 3em;
+}
+
+body>header h1 {
+    text-align: center;
+    margin: 0;
+}
+
+body>header ul {
+    margin: 0;
+}
+
+section#about h2 {
+    width:90%;
+    text-align: center;
+}
+
+section#about img {
+    width: 90%;
+}
+
+@media only screen and (min-device-width:48em) {
+    body {
+        display: grid;
+        height: 100%;
+        grid-template-columns: 1fr 2.25fr 1fr;
+        grid-template-areas: ". . ." ". . .";
+        grid-column-gap: var(--grid-gap);
+        font-size:var(--font-size: 1rem);
+        
+    }
+
+    body>header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column: 1 / -1;
+    }
+
+    body>header h1 {
+        grid-column: 1 / -1;
+        text-align: center;
+    }
+
+    body>header nav ul {
+        transform: translateY(1rem);
+    }
+
+    section#things {
+        width: 100%;
+        margin: 0 auto;
+        grid-column: 2;
+    }
+
+    section#about {
+        grid-column: 2;
+    }
+
+    aside.pullquote {
+        display: none
+    }
+
+    section#about img {
+        width: 90%;
+   }
+}
+
+@media only screen and (min-device-width: 64em) {
+    body {
+        margin: 0 1em;
+        display: grid;
+        height: 100%;
+        max-width: var(--max-width);
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-column-gap: var(--grid-gap);
+        font-size:var(--)
+        
+    }
+
+    body>header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column: 1 / -1;
+
+    }
+
+
+    body>header h1 {
+        grid-column: 1;
+        text-align: left;
+    }
+
+    body>header [role="navigation"] {
+        grid-column: 4 / span 4;
+        display: block;
+    }
+
+    section#things {
+        margin: 0 auto;
+        grid-column:4 / span 5;
+        
+    }
+
+    section#things article {
+        display:grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;                
+        grid-column-gap: var(--grid-gap)
+    }
+
+    section#things  article *  {
+        grid-column: 1 / span 4;
+    }
+    
+    section#about {
+        grid-column: 1 / span 3;
+        grid-row: 2;
+    }
+
+
+
+    section#about img {
+        width: 90%;
+    }
+
+}

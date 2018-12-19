@@ -1,4 +1,1 @@
-Writing a website, with framework, from scratch.\n\n Yes, Gary Bernhardt did it as well, and better. So?
-
-# Collect quotes
-I want to collect quotes and record the sources where I found them.
+# avocadia.net

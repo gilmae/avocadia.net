@@ -1,0 +1,51 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "b41b185586b29203ac15650567ecf9dc",
+    "packages": [
+        {
+            "name": "gilmae/scratch",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gilmae/scratch.git",
+                "reference": "16b5926251ec0e57f01ce801a34aea5cb219c58e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gilmae/scratch/zipball/16b5926251ec0e57f01ce801a34aea5cb219c58e",
+                "reference": "16b5926251ec0e57f01ce801a34aea5cb219c58e",
+                "shasum": ""
+            },
+            "type": "library",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "gilmae",
+                    "email": "avocadia@fastmail.fm"
+                }
+            ],
+            "description": "A set of utilities to bootstrap a basic web site. It's more or less Rack plus some additional stuff.",
+            "support": {
+                "source": "https://github.com/gilmae/scratch/tree/master",
+                "issues": "https://github.com/gilmae/scratch/issues"
+            },
+            "time": "2018-11-21T11:14:38+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "gilmae/scratch": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

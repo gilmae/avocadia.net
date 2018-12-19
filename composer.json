@@ -1,0 +1,23 @@
+{
+    "name": "gilmae/microhub",
+    "description": "A Micropup service",
+    "type": "project",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "gilmae",
+            "email": "avocadia@fastmail.fm"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "gilmae/scratch": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/gilmae/scratch"
+        }
+    ]
+
+}

@@ -1,4 +1,9 @@
 Options -MultiViews
+Options -Indexes
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ index.php [QSA,L]
+
+RewriteRule ^(\.htaccess) - [F,L,NC]
+RewriteRule ^(.+\.db) - [F,L,NC]
+RewriteRule ^app/(.+) - [F,L,NC]
