@@ -14,11 +14,12 @@ class MicropubHandler
         {
             return [MicropubHandler::BADREQUEST, "text/plain", "Bad Request"];
         }
-
-        
+      
         $e = new Enbilulu();
-        
-        $point = $e->put_record(MICROPUB_STREAM, json_encode($_POST));
+        $data = $_POST;
+        unset($data['access_token']);
+
+        $point = $e->put_record(MICROPUB_STREAM, json_encode($data));
 
         return [
             MicropubHandler::CREATED, 
@@ -54,12 +55,13 @@ class MicropubHandler
         $me = $response['me'];
         $iss = $response['issued_by'];
         $client = $response['client_id'];
-        $scope = $response['scope'];
+        $scope = explode(" ", $response['scope']);
 
         if(empty($response)){
             
             return MicropubHandler::UNAUTHORISED;
-        }elseif($me != "http://avocadia.net/" || $scope != "create"){
+        }elseif($me != "http://avocadia.net/" || !in_array("create",$scope)){
+            
             return MicropubHandler::FORBIDDEN;
         }
 
