@@ -12,7 +12,7 @@ class MicropubHandler
 
         if (empty($_POST['content']) || empty($_POST['h']))
         {
-            return [400, "text/plain", "Bad Request"];
+            return [MicropubHandler::BADREQUEST, "text/plain", "Bad Request"];
         }
 
         
@@ -20,10 +20,17 @@ class MicropubHandler
         
         $point = $e->put_record(MICROPUB_STREAM, json_encode($_POST));
 
-        return [201, "text/plain", "ACCEPTED", ['Location'=>'http://avocadia.net/drafts/' . $point]];
+        return [
+            MicropubHandler::CREATED, 
+            "text/plain", 
+            "ACCEPTED", 
+            ['Location'=>'http://avocadia.net/drafts/' . $point]
+        ];
     }
 
     CONST OK = 200;
+    CONST CREATED = 201;
+    CONST BADREQUEST = 400;
     CONST UNAUTHORISED = 401;
     CONST FORBIDDEN = 403;
 
