@@ -3,3 +3,4 @@
 .db
 /vendor/
 micropub.db
+config.php

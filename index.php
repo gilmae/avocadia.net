@@ -17,9 +17,9 @@ foreach (glob("app/*.php") as $filename)
 
 $e = new Enbilulu();
 
-if (!$e->exists("micropub.db"))
+if (!$e->exists(MICROPUB_STREAM))
 {
-    $e->create("micropub.db");
+    $e->create(MICROPUB_STREAM);
 }
 
 $router = new Router(

@@ -6,7 +6,7 @@ class MicropubHandler
     {
         $authcheck = MicropubHandler::IsAuthorised();
 
-        if ($authcheck != OK){
+        if ($authcheck != MicropubHandler::OK){
             return [(int)$authcheck, "text/plain", $authcheck];
         }
 
@@ -18,9 +18,9 @@ class MicropubHandler
         
         $e = new Enbilulu();
         
-        $point = $e->put_record("micropub.db", json_encode($_POST));
+        $point = $e->put_record(MICROPUB_STREAM, json_encode($_POST));
 
-        return [202, "text/plain", "ACCEPTED", ['Location'=>'http://avocadia.net/drafts/' . $point]];
+        return [201, "text/plain", "ACCEPTED", ['Location'=>'http://avocadia.net/drafts/' . $point]];
     }
 
     CONST OK = 200;
@@ -32,10 +32,11 @@ class MicropubHandler
         $headers = apache_request_headers();
         // Check token is valid
         $token = $headers['Authorization'];
+
         $ch = curl_init("https://tokens.indieauth.com/token");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, Array(
-             "Content-Type: application/x-www-form-urlencoded"
+             "Content-Type: application/json"
             ,"Authorization: $token"
         ));
         $response = Array();
@@ -47,9 +48,11 @@ class MicropubHandler
         $iss = $response['issued_by'];
         $client = $response['client_id'];
         $scope = $response['scope'];
+
         if(empty($response)){
+            
             return MicropubHandler::UNAUTHORISED;
-        }elseif($me != "http://avocadia.net" || $scope != "post"){
+        }elseif($me != "http://avocadia.net/" || $scope != "create"){
             return MicropubHandler::FORBIDDEN;
         }
 
