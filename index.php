@@ -25,6 +25,7 @@ if (!$e->exists(MICROPUB_STREAM))
 $router = new Router(
     array(
         '/' => "HomeModule::index",
+        '/micropub?q=config' => "MicropubHandler::config",
         '/micropub' => "MicropubHandler::create",
         '/drafts/:id' => [200, "text/plain", 'draft'] 
     ),

@@ -2,6 +2,12 @@
 
 class MicropubHandler
 {
+    public static function config()
+    {
+        $c = (object)Array();
+        return [MicropubHandler::OK, "application/json", json_encode($c)];
+    }
+    
     public static function create($route)
     {
         $authcheck = MicropubHandler::IsAuthorised();
