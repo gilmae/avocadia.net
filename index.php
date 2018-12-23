@@ -26,6 +26,7 @@ $router = new Router(
     array(
         '/' => "HomeModule::index",
         '/micropub?q=config' => "MicropubHandler::config",
+        '/micropub/media' => "MicropubHandler::media",
         '/micropub' => "MicropubHandler::create",
         '/drafts/:id' => [200, "text/plain", 'draft'] 
     ),
