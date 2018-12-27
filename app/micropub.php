@@ -16,7 +16,7 @@ class MicropubHandler
             return [(int)$authcheck, "text/plain", $authcheck];
         }
 
-        if (empty($_POST['content']) || empty($_POST['h']))
+        if (empty($_POST['h']))
         {
             return [MicropubHandler::BADREQUEST, "text/plain", "Bad Request"];
         }
@@ -37,6 +37,11 @@ class MicropubHandler
 
     public static function media()
     {
+        $authcheck = MicropubHandler::IsAuthorised();
+
+        if ($authcheck != MicropubHandler::OK){
+            return [(int)$authcheck, "text/plain", $authcheck];
+        }
         $filename = MicropubHandler::HandleFileUpload('file');
         return [MicropubHandler::CREATED, "text/plain", "", ['Location'=>'http://avocadia.net/' . $filename]];
     }
@@ -134,7 +139,7 @@ class MicropubHandler
         
         } catch (RuntimeException $e) {
         
-            echo $e->getMessage();
+            return $e->getMessage();
         
         }
     }
