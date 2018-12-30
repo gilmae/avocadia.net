@@ -4,3 +4,5 @@
 /vendor/
 micropub.db
 config.php
+uploads
+drafts
