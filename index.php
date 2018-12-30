@@ -38,7 +38,6 @@ $router = new Router(
 
 $routes = [];
 
-
-Scratch::run($router);
+run($router);
 ?>
 
