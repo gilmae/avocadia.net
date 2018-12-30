@@ -25,6 +25,7 @@ if (!$e->exists(MICROPUB_STREAM))
 $router = new Router(
     array(
         '/' => "HomeModule::index",
+        '/stream/get_records?point=:point&count=:count' => 'StreamHandler::Get',
         '/micropub?q=config' => "MicropubHandler::config",
         '/micropub/media' => "MicropubHandler::media",
         '/micropub' => "MicropubHandler::create",
