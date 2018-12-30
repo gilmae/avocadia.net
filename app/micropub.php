@@ -27,11 +27,15 @@ class MicropubHandler
 
         $point = $e->put_record(MICROPUB_STREAM, json_encode($data));
 
+        $filename = sprintf("./drafts/%s.json", $point);
+
+        file_put_contents($filename, json_encode($data));
+
         return [
             MicropubHandler::CREATED, 
             "text/plain", 
             "", 
-            ['Location'=>'http://avocadia.net/drafts/' . $point]
+            ['Location'=>$filename]
         ];
     }
 
