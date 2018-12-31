@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/gilmae/scratch.git",
-                "reference": "5d770362bb43f8e3cb4455d64432484cf2fa4b9c"
+                "reference": "5e331eb3de7eb7f0344e0b7cad8b195c85a655dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gilmae/scratch/zipball/5d770362bb43f8e3cb4455d64432484cf2fa4b9c",
-                "reference": "5d770362bb43f8e3cb4455d64432484cf2fa4b9c",
+                "url": "https://api.github.com/repos/gilmae/scratch/zipball/5e331eb3de7eb7f0344e0b7cad8b195c85a655dd",
+                "reference": "5e331eb3de7eb7f0344e0b7cad8b195c85a655dd",
                 "shasum": ""
             },
             "type": "library",
@@ -35,7 +35,7 @@
                 "source": "https://github.com/gilmae/scratch/tree/master",
                 "issues": "https://github.com/gilmae/scratch/issues"
             },
-            "time": "2018-12-30T05:55:14+00:00"
+            "time": "2018-12-31T03:41:15+00:00"
         }
     ],
     "packages-dev": [],
