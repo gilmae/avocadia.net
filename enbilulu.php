@@ -84,7 +84,7 @@ class Enbilulu
         {
             $item = (object)array(
                 'sequence_number'=>(int)$p["id"],
-                'data'=>$p["payload"],
+                'data'=>json_decode($p["payload"]),
                 'created_at'=>DateTime::createFromFormat(DateTime::ISO8601, $p["created_at"])
             );
 
