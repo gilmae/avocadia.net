@@ -25,7 +25,7 @@ class MicropubHandler
         $data = $_POST;
         unset($data['access_token']);
 
-        $point = $e->put_record(MICROPUB_STREAM, json_encode($data));
+        $point = $e->put_record(MICROPUB_STREAM, $data);
 
         $filename = sprintf("./drafts/%s.json", $point);
 
