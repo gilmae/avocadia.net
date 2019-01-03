@@ -1,5 +1,6 @@
 <?php
 
+
 class StreamHandler
 {
     public static function get($args) :array
@@ -11,6 +12,15 @@ class StreamHandler
 
         $e = new Enbilulu();
         $points = $e->get_records($stream, $point, $count);
+
+        $points->records = array_map(function ($p)
+        {
+            return (object)array(
+                'sequence_number'=>$p->sequence_number,
+                'data'=>$p->data,
+                'created_at'=>$p->created_at->format("c")
+            );
+        }, $points->records);
 
         return [200, "application/json", json_encode($points)];
     }
