@@ -23,6 +23,12 @@ class MicropubHandler
       
         $e = new Enbilulu();
         $data = $_POST;
+
+        if (!is_array($data['category']))
+        {
+            $data['category'] = explode(" ", $data['category']);
+        }
+
         unset($data['access_token']);
 
         $point = $e->put_record(MICROPUB_STREAM, $data);
