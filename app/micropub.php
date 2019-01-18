@@ -29,6 +29,12 @@ class MicropubHandler
             $data['category'] = explode(" ", $data['category']);
         }
 
+        if (isset($_FILES['photo']))
+        {
+            $filename = MicropubHandler::HandleFileUpload($_FILES['photo']);
+            $data['photo'] = 'http://avocadia.net/' . $filename;
+        }
+
         unset($data['access_token']);
 
         $point = $e->put_record(MICROPUB_STREAM, $data);
