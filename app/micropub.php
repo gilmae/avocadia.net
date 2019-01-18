@@ -52,7 +52,11 @@ class MicropubHandler
         if ($authcheck != MicropubHandler::OK){
             return [(int)$authcheck, "text/plain", $authcheck];
         }
-        $filename = MicropubHandler::HandleFileUpload('file');
+
+        if (isset($_FILES['file']))
+        {
+            $filename = MicropubHandler::HandleFileUpload($_FILES['file']);
+        }
         return [MicropubHandler::CREATED, "text/plain", "", ['Location'=>'http://avocadia.net/' . $filename]];
     }
 
@@ -95,7 +99,7 @@ class MicropubHandler
         return MicropubHandler::OK;
     }
 
-    private static function HandleFileUpload($uploadedFileName)
+    private static function HandleFileUpload($uploadedFile)
     {
 
         try {
@@ -103,14 +107,14 @@ class MicropubHandler
             // Undefined | Multiple Files | $_FILES Corruption Attack
             // If this request falls under any of them, treat it invalid.
             if (
-                !isset($_FILES[$uploadedFileName]['error']) ||
-                is_array($_FILES[$uploadedFileName]['error'])
+                !isset(uploadedFile['error']) ||
+                is_array(uploadedFile['error'])
             ) {
                 throw new RuntimeException('Invalid parameters.');
             }
         
-            // Check $_FILES[$uploadedFileName]['error'] value.
-            switch ($_FILES[$uploadedFileName]['error']) {
+            // Check uploadedFile['error'] value.
+            switch (uploadedFile['error']) {
                 case UPLOAD_ERR_OK:
                     break;
                 case UPLOAD_ERR_NO_FILE:
@@ -123,14 +127,14 @@ class MicropubHandler
             }
         
             // You should also check filesize here. 
-            if ($_FILES[$uploadedFileName]['size'] > 1000000) {
+            if (uploadedFile['size'] > 1000000) {
                 throw new RuntimeException('Exceeded filesize limit.');
             }
         
             // DO NOT TRUST $_FILES['upfile']['mime'] VALUE !!
             // Check MIME Type by yourself.
             $finfo = new finfo(FILEINFO_MIME_TYPE);
-            $finfo->file($_FILES[$uploadedFileName]['tmp_name']);
+            $finfo->file(uploadedFile['tmp_name']);
                 
         
             $filename = sprintf('./uploads/%s', uniqid());
@@ -139,7 +143,7 @@ class MicropubHandler
             // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
             // On this example, obtain safe unique name from its binary data.
             if (!move_uploaded_file(
-                $_FILES[$uploadedFileName]['tmp_name'],
+                uploadedFile['tmp_name'],
                 $filename
             )) {
                 throw new RuntimeException('Failed to move uploaded file.');
