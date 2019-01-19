@@ -112,7 +112,6 @@ class MicropubHandler
 
     private static function HandleFileUpload($uploadedFile)
     {
-
         try {
     
             // Undefined | Multiple Files | $_FILES Corruption Attack
@@ -148,7 +147,7 @@ class MicropubHandler
             $finfo->file($uploadedFile['tmp_name']);
                 
         
-            $filename = sprintf('./uploads/%s', uniqid());
+            $filename = sprintf('./uploads/%s_%s', uniqid(), $uploadedFile['name']);
             
             // You should name it uniquely.
             // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
