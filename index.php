@@ -9,6 +9,11 @@ foreach (glob("config/*.php") as $filename)
     include $filename;
 }
 
+foreach (glob("lib/*.php") as $filename)
+{
+    include $filename;
+}
+
 foreach (glob("app/*.php") as $filename)
 {
     include $filename;
