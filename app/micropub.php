@@ -24,7 +24,7 @@ class MicropubHandler
         $e = new Enbilulu();
         $data = $_POST;
 
-        if (!is_array($data['category']))
+        if (isset($data['category']) && !is_array($data['category']))
         {
             $data['category'] = explode(" ", $data['category']);
         }
@@ -74,6 +74,11 @@ class MicropubHandler
 
     private static function IsAuthorised()
     {
+        if (!REQUIRES_AUTH)
+        {
+            return true;
+        }
+
         $headers = apache_request_headers();
         // Check token is valid
         $token = $headers['Authorization'];
@@ -113,14 +118,14 @@ class MicropubHandler
             // Undefined | Multiple Files | $_FILES Corruption Attack
             // If this request falls under any of them, treat it invalid.
             if (
-                !isset(uploadedFile['error']) ||
-                is_array(uploadedFile['error'])
+                !isset($uploadedFile['error']) ||
+                is_array($uploadedFile['error'])
             ) {
                 throw new RuntimeException('Invalid parameters.');
             }
         
             // Check uploadedFile['error'] value.
-            switch (uploadedFile['error']) {
+            switch ($uploadedFile['error']) {
                 case UPLOAD_ERR_OK:
                     break;
                 case UPLOAD_ERR_NO_FILE:
@@ -133,14 +138,14 @@ class MicropubHandler
             }
         
             // You should also check filesize here. 
-            if (uploadedFile['size'] > 1000000) {
+            if ($uploadedFile['size'] > 1000000) {
                 throw new RuntimeException('Exceeded filesize limit.');
             }
         
             // DO NOT TRUST $_FILES['upfile']['mime'] VALUE !!
             // Check MIME Type by yourself.
             $finfo = new finfo(FILEINFO_MIME_TYPE);
-            $finfo->file(uploadedFile['tmp_name']);
+            $finfo->file($uploadedFile['tmp_name']);
                 
         
             $filename = sprintf('./uploads/%s', uniqid());
@@ -149,7 +154,7 @@ class MicropubHandler
             // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
             // On this example, obtain safe unique name from its binary data.
             if (!move_uploaded_file(
-                uploadedFile['tmp_name'],
+                $uploadedFile['tmp_name'],
                 $filename
             )) {
                 throw new RuntimeException('Failed to move uploaded file.');
