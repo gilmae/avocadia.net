@@ -8,7 +8,7 @@ class MicropubHandler
         return [MicropubHandler::OK, "application/json", json_encode($c)];
     }
     
-    public static function create($route)
+    public static function create($env)
     {
         $authcheck = MicropubHandler::IsAuthorised();
 

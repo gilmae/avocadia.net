@@ -27,7 +27,7 @@ if (!$e->exists(MICROPUB_STREAM))
     $e->create(MICROPUB_STREAM);
 }
 
-$router = new Router(
+$router = new Scratch\Router(
     array(
         '/' => "HomeModule::index",
         '/stream/get_records/:point' => 'StreamHandler::get',
@@ -45,6 +45,6 @@ $router = new Router(
 
 $routes = [];
 
-run($router);
+Scratch\run($router);
 ?>
 

@@ -3,10 +3,10 @@
 
 class StreamHandler
 {
-    public static function get($args) :array
+    public static function get($env) :array
     {
         $stream = MICROPUB_STREAM;
-
+        $args = $env['route_args'];
         $point = $args["point"];
         $count = $args["count"] ?? 1;
 
@@ -25,8 +25,9 @@ class StreamHandler
         return [200, "application/json", json_encode($points)];
     }
 
-    public static function get_stream_position($args) :array
+    public static function get_stream_position($env) :array
     {
+        $args = $env['route_args'];
         $stream = MICROPUB_STREAM;
         $config = Array('type'=>$args['type'], 'starting_point'=>$args['start_from']);
 
