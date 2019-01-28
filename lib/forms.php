@@ -28,7 +28,7 @@
             }
         
             // You should also check filesize here. 
-            if ($uploadedFile['size'] > 1000000) {
+            if ($uploadedFile['size'] > 5*1024*1024) {
                 throw new RuntimeException('Exceeded filesize limit.');
             }
         
