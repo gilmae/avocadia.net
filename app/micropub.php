@@ -16,22 +16,22 @@ class MicropubHandler
             return [(int)$authcheck, "text/plain", $authcheck];
         }
 
-        if (empty($_POST['h']))
+        if (empty($env['POST']['h']))
         {
             return [MicropubHandler::BADREQUEST, "text/plain", "Bad Request"];
         }
       
         $e = new Enbilulu();
-        $data = $_POST;
+        $data = $env['POST'];
 
         if (isset($data['category']) && !is_array($data['category']))
         {
             $data['category'] = explode(" ", $data['category']);
         }
 
-        if (isset($_FILES['photo']))
+        if (isset($env["FILES"]['photo']))
         {
-            $filename = SV\Utils\Forms\HandleFileUpload($_FILES['photo'], './uploads');
+            $filename = SV\Utils\Forms\HandleFileUpload($env["FILES"]['photo'], './uploads');
             $data['photo'] = 'http://avocadia.net/' . $filename;
         }
 
@@ -59,9 +59,9 @@ class MicropubHandler
             return [(int)$authcheck, "text/plain", $authcheck];
         }
 
-        if (isset($_FILES['file']))
+        if (isset($env["FILES"]['file']))
         {
-            $filename = SV\Utils\Forms\HandleFileUpload($_FILES['file'], './uploads');
+            $filename = SV\Utils\Forms\HandleFileUpload($env["FILES"]['file'], './uploads');
             
         }
         return [MicropubHandler::CREATED, "text/plain", "", ['Location'=>'http://avocadia.net/' . $filename]];
